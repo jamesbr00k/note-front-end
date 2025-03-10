@@ -1,7 +1,6 @@
-
-
 h1 {
  font-weight: bold;
+ margin-top: 50px;
 }
 
 h2 {
@@ -45,8 +44,16 @@ body {
     border-color: black;
 }
 
+h1.base {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    z-index: 0;
+}
+
 img.base {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 15px;
+    right: 10px;
+    z-index: 0;
 }
