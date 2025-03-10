@@ -1,0 +1,52 @@
+
+
+h1 {
+ font-weight: bold;
+}
+
+h2 {
+    margin-bottom: 0%;
+    margin-top: 6px;
+}
+
+h3 {
+    text-align: end;
+    font-weight: lighter;
+    margin-top: 1%;
+}
+
+body {
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.noteQV {
+    background-color: gray;
+    margin-top: 10px;
+
+    padding-top: 3px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    border-radius: 12px;
+    
+}
+
+.container {
+    display: table-row;
+    grid-template-columns: repeat(2, 50vw);
+    
+}
+
+.col {
+    width: 50vw;
+    border: 10px;
+    border-color: black;
+}
+
+img.base {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
