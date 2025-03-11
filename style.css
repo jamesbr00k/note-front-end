@@ -67,6 +67,11 @@ input[type="submit"] {
     margin-top: 30px;
 }
 
+input:focus { 
+    outline: none; 
+    border: blue 0px solid;
+ }
+
 button {
     width: 33%;
     font-weight: bold;
