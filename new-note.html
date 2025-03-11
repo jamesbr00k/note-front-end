@@ -14,13 +14,22 @@
         <input type="text" id = "title">
 
         <label for="body">Body</label>
-        <input type="text">
+        <input type="text" id="body">
 
         <input type="button" value="Save">
     </form>
 
     <script>
-        // create new note call
+       src="calls/Index.js"
+    </script>
+
+    <script>
+        var title = document.getElementById("title");
+        var body = document.getElementById("body");
+
+        var date = `{getDate()}/{getMonth}/{GetFullYear()}`
+
+        new_Note(title, body, date)
     </script>
 
 </body>

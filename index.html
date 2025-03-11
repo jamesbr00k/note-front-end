@@ -12,7 +12,6 @@
     
     <a href="new-note.html"><img src="./plus.png" alt="plus icon (new note)" style="width: 30px;" class = "base"></a>
 
-    <a href="view-note.html">
         <Div class="noteQV">
             <div class="container">
                 <div class="col">
@@ -22,14 +21,33 @@
                     <h3>note date</h3>
                 </Div>
             </div>
-            <p class="preview"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt velit obcaecati eveniet, illum, in laudantium praesentium animi nemo natus incidunt sit doloremque culpa molestias nobis accusamus. Unde necessitatibus a pariatur...</p>
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt velit obcaecati eveniet, illum, in laudantium praesentium animi nemo natus incidunt sit doloremque culpa molestias nobis accusamus. Unde necessitatibus a pariatur...</p>
         </Div>
-    </a>
+    
+        <div id="target"></div>
 
+    <Script> src = "calls/Index.js" </Script>
     <script>
-        // get call 
+        let notes = return_All();
+        const loadedNotes = document.createElement("div") ;
 
-        // get records and iterate
+        for(note of notes) {
+            const loadingNote = document.createElement("div.noteQV");
+            loadingNote.innerHTML = 
+            `<div class="container">
+                    <div class="col">
+                        <h2>{note.title}}</h2>
+                    </div>
+                    <Div class="col">
+                        <h3>{note.date}</h3>
+                    </Div>
+                </div>
+            <p>{note.body}</p>`;
+
+            loadedNotes.appendChild(loadingNote);
+        }
+
+        const target = document.getElementById('target')
     </script>
 
 </body>
