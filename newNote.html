@@ -44,7 +44,9 @@
     
             const response = await fetch('http://localhost:3000/add', {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-type':'application/json'},
+                body: JSON.stringify(formData),
             });
     
             if (response.ok) {
