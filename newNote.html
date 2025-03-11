@@ -35,7 +35,7 @@
     
             const formData = new FormData(form);
     
-            const response = await fetch('http://localhost:3306/notes/post/new_Note', {
+            const response = await fetch('http://localhost:3000/add', {
                 method: 'POST',
                 body: formData,
             });

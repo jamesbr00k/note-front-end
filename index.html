@@ -18,7 +18,7 @@
     <script>
         async function fetchNotes() {
             try {
-                const response = await fetch('http://localhost:3306/notes/new_Note');
+                const response = await fetch('http://localhost:3000/');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -31,7 +31,7 @@
 
         async function deleteNote(noteId, noteElement) {
             try {
-                const response = await fetch(`http://localhost:3306/notes/deleteNote/${noteId}`, {
+                const response = await fetch(`http://localhost:3000/delete/${noteId}`, {
                     method: 'DELETE'
                 });
                 if (!response.ok) {
@@ -87,7 +87,7 @@
     <script>
         document.getElementById('empty').addEventListener('click', async () => {
             try {
-                const response = await fetch('http://localhost:3306/notes/emptyNotes', {
+                const response = await fetch('http://localhost:3000/clear', {
                     method: 'POST'
                 });
                 if (!response.ok) {
