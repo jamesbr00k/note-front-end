@@ -46,10 +46,7 @@
         async function loadNotes() {
             const notes = await fetchNotes();
 
-            // Sample notes data for testing
-            
-
-            if (notes) {
+            if (notes && notes.length > 0) {
                 const target = document.getElementById('target');
                 notes.forEach(note => {
                     const loadingNote = document.createElement("div");
@@ -99,8 +96,6 @@
             }
         });
     </script>
-
-    <script></script>
 
 </body>
 </html>
