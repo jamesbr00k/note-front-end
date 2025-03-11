@@ -18,7 +18,9 @@
     <script>
         async function fetchNotes() {
             try {
-                const response = await fetch('http://localhost:3000/');
+                const response = await fetch('http://localhost:3000/',{
+                    method: 'GET'
+                });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -31,7 +33,7 @@
 
         async function deleteNote(noteId, noteElement) {
             try {
-                const response = await fetch(`http://localhost:3000/delete/${noteId}`, {
+                const response = await fetch(`http://localhost:3000/delete/:${noteId}`, {
                     method: 'DELETE'
                 });
                 if (!response.ok) {
@@ -44,11 +46,11 @@
         }
 
         async function loadNotes() {
-            const notes = await fetchNotes();
-
-            if (notes && notes.length > 0) {
+            const {allNotes} = await fetchNotes();
+            console.log(allNotes);
+            if (allNotes && allNotes.length > 0) {
                 const target = document.getElementById('target');
-                notes.forEach(note => {
+                allNotes.forEach(note => {
                     const loadingNote = document.createElement("div");
                     loadingNote.className = "noteQV";
                     loadingNote.innerHTML = 
@@ -85,7 +87,7 @@
         document.getElementById('empty').addEventListener('click', async () => {
             try {
                 const response = await fetch('http://localhost:3000/clear', {
-                    method: 'POST'
+                    method: 'DELETE'
                 });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
