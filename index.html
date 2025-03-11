@@ -44,25 +44,10 @@
         }
 
         async function loadNotes() {
-            //const notes = await fetchNotes();
+            const notes = await fetchNotes();
 
             // Sample notes data for testing
-            const notes = [{
-                    id: 3,
-                    title: "Sample Note 3",
-                    date: "2023/10/03",
-                    body: "lorum ipsum delor sit amet."
-                },{
-                    id: 2,
-                    title: "Sample Note 2",
-                    date: "2023/10/02",
-                    body: "necator."
-                },{
-                    id: 1,
-                    title: "Sample Note 1",
-                    date: "2023/10/01",
-                    body: "or sit amet, consectetur adipiscing elit. Nulla nec odio."
-                }];
+            
 
             if (notes) {
                 const target = document.getElementById('target');
