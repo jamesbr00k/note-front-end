@@ -9,6 +9,7 @@
 <body>
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1>Notes:</h1>
+        <h4 style="font-weight: lighter;" id="empty">Delete My Notes</h4>
         <a href="newNote.html" class="base"><img src="./plus.png" alt="plus icon (new note)" style="width: 30px;"></a>
     </div>
 
@@ -27,20 +28,37 @@
                 console.error('There has been a problem with your fetch operation:', error);
             }
         }
-    
+
+        async function deleteNote(noteId, noteElement) {
+            try {
+                const response = await fetch(`http://localhost:3306/notes/deleteNote/${noteId}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                noteElement.remove();
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+
         async function loadNotes() {
             //const notes = await fetchNotes();
 
             // Sample notes data for testing
             const notes = [{
+                    id: 3,
                     title: "Sample Note 3",
                     date: "2023/10/03",
                     body: "lorum ipsum delor sit amet."
                 },{
+                    id: 2,
                     title: "Sample Note 2",
                     date: "2023/10/02",
                     body: "necator."
                 },{
+                    id: 1,
                     title: "Sample Note 1",
                     date: "2023/10/01",
                     body: "or sit amet, consectetur adipiscing elit. Nulla nec odio."
@@ -57,18 +75,47 @@
                             <h2>${note.title}</h2>
                         </div>
                         <div class="col">
-                            <h3>${note.date}</h3>
+                            <div class="container" style="display: flex; justify-content: end;">
+                                <h3 class="delete-note" data-id="${note.id}">Delete Note</h3>
+                                <h3 style="padding-left: 5px;">${note.date}</h3>
+                            </div>
                         </div>
                     </div>
                     <p>${note.body}</p>`;
     
                     target.appendChild(loadingNote);
                 });
+
+                document.querySelectorAll('.delete-note').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const noteId = event.target.getAttribute('data-id');
+                        const noteElement = event.target.closest('.noteQV');
+                        deleteNote(noteId, noteElement);
+                    });
+                });
             }
         }
-    
+
         loadNotes();
     </script>
+
+    <script>
+        document.getElementById('empty').addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:3306/notes/emptyNotes', {
+                    method: 'POST'
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                document.getElementById('target').innerHTML = '';
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        });
+    </script>
+
+    <script></script>
 
 </body>
 </html>
