@@ -4,53 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
- 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <H1>Notes:</H1>
-
-    <!-- <Div class="noteQV">
-        <div class="container">
-            <div class="col">
-                <h2>Note title</h2>
-            </div>
-            <Div class="col">
-                <h3>note date</h3>
-            </Div>
-        </div>
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt velit obcaecati eveniet, illum, in laudantium praesentium animi nemo natus incidunt sit doloremque culpa molestias nobis accusamus. Unde necessitatibus a pariatur...</p>
-    </Div> -->
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Notes:</h1>
+        <a href="newNote.html" class="base"><img src="./plus.png" alt="plus icon (new note)" style="width: 30px;"></a>
+    </div>
 
     <div id="target"></div>
 
     <script>
         async function fetchNotes() {
-            const response = await fetch('mysql://root:@localhost:3306/notes/new_Note')
-            const data = await response.json();
-            return data
+            try {
+                const response = await fetch('http://localhost:3306/notes/new_Note');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
         }
+    
+        async function loadNotes() {
+            //const notes = await fetchNotes();
 
-        let notes = fetchNotes();
+            // Sample notes data for testing
+            const notes = [{
+                    title: "Sample Note 3",
+                    date: "2023/10/03",
+                    body: "lorum ipsum delor sit amet."
+                },{
+                    title: "Sample Note 2",
+                    date: "2023/10/02",
+                    body: "necator."
+                },{
+                    title: "Sample Note 1",
+                    date: "2023/10/01",
+                    body: "or sit amet, consectetur adipiscing elit. Nulla nec odio."
+                }];
 
-        const target = document.getElementById('target');
-
-        for(note of notes) {
-            const loadingNote = document.createElement("div.noteQV");
-            loadingNote.innerHTML = 
-            `<div class="container">
-                    <div class="col">
-                        <h2>{note.title}</h2>
+            if (notes) {
+                const target = document.getElementById('target');
+                notes.forEach(note => {
+                    const loadingNote = document.createElement("div");
+                    loadingNote.className = "noteQV";
+                    loadingNote.innerHTML = 
+                    `<div class="container" style="display: flex; justify-content: space-between;">
+                        <div class="col">
+                            <h2>${note.title}</h2>
+                        </div>
+                        <div class="col">
+                            <h3>${note.date}</h3>
+                        </div>
                     </div>
-                    <Div class="col">
-                        <h3>{note.date}</h3>
-                    </Div>
-                </div>
-            <p>{note.body}</p>`;
-
-            target.appendChild(loadingNote);
+                    <p>${note.body}</p>`;
+    
+                    target.appendChild(loadingNote);
+                });
+            }
         }
-        
+    
+        loadNotes();
     </script>
 
 </body>

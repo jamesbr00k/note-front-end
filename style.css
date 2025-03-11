@@ -1,6 +1,5 @@
 h1 {
  font-weight: bold;
- margin-top: 50px;
 }
 
 h2 {
@@ -12,11 +11,13 @@ h3 {
     text-align: end;
     font-weight: lighter;
     margin-top: 1%;
+    font-size: small;
 }
 
 body {
     margin-left: 1%;
     margin-right: 1%;
+    background-color: #d1d1d1;
 }
 
 a {
@@ -49,29 +50,34 @@ a {
     border-color: black;
 }
 
-h1.base {
-    position: absolute;
-    top: 25px;
-    left: 10px;
-    z-index: 0;
-}
-
-img.base {
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    z-index: 0;
-}
-
 p.preview {
     max-lines: 1;
 }
 
 input {
-    width: 100%;
+    width: 95%;
+    border-radius: 12px;
+    border-width: 0px;
+}
+
+input[type="submit"] {
+    width: 33%;
+    font-weight: bold;
+    border-radius: 12px;
+    margin-top: 30px;
 }
 
 button {
     width: 33%;
-    align-items: end;
+    font-weight: bold;
+    border-radius: 12px;
+    margin-top: 30px;
+    border-width: 0px;
+}
+
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+    width: 100%;
 }

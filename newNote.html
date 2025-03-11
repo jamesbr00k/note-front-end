@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <title>New Note</title>
+</head>
+<body>
+    <form id="newNoteForm">
+        <div style="width: 66%;">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" style="width: 100%;">
+        </div>
+
+        <div>
+            <label for="body">Body</label>
+            <p style="height: 2px; margin: 0px;"></p>
+            <input type="text" id="body" name="body" style="width: 66%; height: 100px;">
+        </div>
+        
+        <div>
+            <input type="submit" value="Save" style="height: 30px;">
+            <button type="button" onclick="window.location.href='index.html'" style="height: 30px;">Return</button>
+        </div>
+    </form>
+
+    <script>
+        const form = document.querySelector("#newNoteForm");
+    
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+    
+            const formData = new FormData(form);
+    
+            const response = await fetch('http://localhost:3306/notes/post/new_Note', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (response.ok) {
+                alert("Note saved successfully!");
+            } else {
+                alert("Failed to save note.");
+            }
+        });
+    </script>
+
+</body>
+</html>
